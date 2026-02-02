@@ -4,7 +4,7 @@ colors: list = ['red', 'blue', 'yellow', 'green', 'purple', 'brown', 'black', 'w
 
 
 def select_random_color():
-    """Create a random color out of the list 'colors' and return it."""
+    """Select a random color from the list 'colors' and return it."""
     random_color = colors[random.randint(0, len(colors)) - 1]
     return random_color
 
