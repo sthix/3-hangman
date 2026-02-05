@@ -6,8 +6,6 @@ guessed_letters: set = set()
 answered: bool = False
 number_of_guesses: int = 0
 
-
-
 def select_random_color():
     """Select a random color from the list 'colors' and return it."""
     random_color: str = random.choice(colors)
@@ -43,7 +41,7 @@ def guess_word(answer: str):
 
 if __name__ == "__main__":
     word = select_random_color()
-    save = save_color_set(word)
+    save_color_set(word)
     while not answered:
         guess_word(word)
         number_of_guesses += 1
