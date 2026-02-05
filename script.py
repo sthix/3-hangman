@@ -22,13 +22,14 @@ def guess_word(answer: str):
 
     display_list = []
     for letter in answer:
-        if letter in guessed_letters.intersection(letter):
+        if letter in guessed_letters:
             display_list.append(letter)
         else:
             display_list.append("–")
 
     print(*display_list)
-    if "–" not in display_list:
+
+    if guessed_letters >= correct_letters:
         print("YOU HAVE WON!")
         print(f"You needed {number_of_guesses} tries.")
         global answered
