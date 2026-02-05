@@ -2,39 +2,45 @@ import random
 
 colors: list = ['red', 'blue', 'yellow', 'green', 'purple', 'brown', 'black', 'white', 'orange']
 correct_letters: set = set()
+guessed_letters: set = set()
 answered: bool = False
+
+
 
 def select_random_color():
     """Select a random color from the list 'colors' and return it."""
     random_color: str = random.choice(colors)
     return random_color
 
-def save_color(word):
-    [correct_letters.add(letter) for letter in word]
-    print(correct_letters)
 
-def guess_word(word):
-    guess: str = str(input("Guess a letter from a color name!\n"))
-    print(correct_letters)
-
-    if guess in word:
-        print(guess)
-    else:
-        print("– ")
+def save_color_set(color):
+    return [correct_letters.add(letter) for letter in color]
 
 
-def show_guess(word, guess):
-    # Show the word with the currently correctly guessed letters
+def guess_word(answer: str):
+    guess: str = str(input("\nGuess a letter from a color name!\n\n"))
+    guessed_letters.add(guess)
     display_list = []
-    for letter in word:
-        if letter in word:
-            print(letter)
+    for letter in answer:
+        if letter in guessed_letters.intersection(letter):
+            display_list.append(letter)
         else:
-            print("_")
-
+            display_list.append("–")
 
     print(*display_list)
+    if "–" not in display_list:
+        print("YOU HAVE WON!")
+        global answered
+        answered = True
+
+    else:
+        print("""\nYou are close. Continue:\n----------------------------------""")
+
+
 
 if __name__ == "__main__":
     word = select_random_color()
-    save_color(word)
+    save = save_color_set(word)
+    while not answered:
+        guess_word(word)
+
